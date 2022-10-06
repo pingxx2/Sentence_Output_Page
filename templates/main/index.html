@@ -3,7 +3,13 @@
 {% block content %}
     <div class="container">
         <div class="row justify-content-center align-items-center" style="min-height: 20vh">
-            <i class="far fa-heart fa-2x"></i>
+            <a href="#" onclick="addLike()" data-uri="{% url 'main:bookmark' sentence.id %}" class="heartBtn btn" id="heartBtn">
+                {% if heart%}
+                    <i class="fas fa-heart fa-2x" style="color:red;"></i>
+                {% else %}
+                    <i class="far fa-heart fa-2x" style="color:black;"></i>
+                {% endif %}
+            </a>
         </div>
         <!-- 문구를 세로로 중앙에 배치하는 div -->
         <div class="row justify-content-center align-items-center" style="min-height: 50vh">
@@ -18,3 +24,26 @@
         </div>
     </div>
 {% endblock %}
+
+{% block script%}
+<script>
+    {% comment %} function addLike(){
+        const pushHeartBtn = document.querySelector(".heartBtn");
+                pushHeartBtn.innerHTML ='<i class="fas fa-heart fa-2x"></i>';
+                pushHeartBtn.style.color ='red';
+                location.href = window.location.href + pushHeartBtn.value();
+    } {% endcomment %}
+    
+    $(document).ready(function(){
+        $(".heartBtn").on('click', function() {
+            location.href = $(this).data('uri');
+        });
+    });
+</script>
+<style>
+    .btn:focus, .btn:active:focus, .btn.active:focus{
+        outline:none;
+        box-shadow:none;
+    }
+</style>
+{% endblock%}

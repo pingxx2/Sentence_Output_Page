@@ -2,13 +2,16 @@
 
 {% block content %}
     <div class="container">
+        <div class="row justify-content-center align-items-center" style="min-height: 20vh">
+            <i class="far fa-heart fa-2x"></i>
+        </div>
         <!-- 문구를 세로로 중앙에 배치하는 div -->
-        <div class="row justify-content-center align-items-center" style="min-height: 70vh">
-            </br>
-            <h1 class="text-center">
-                "{{sentence.content}}"
-            </h1>
-            </br>
+        <div class="row justify-content-center align-items-center" style="min-height: 50vh">
+            <div class="container">
+                <h1 class="text-center">
+                    "{{sentence.content}}"
+                </h1>
+            </div>
             <div class="card" style="font-size:0.7em">
                 <div class="card-body text-center"><strong>{{sentence.title}}</strong>&nbsp;&nbsp;&nbsp;{{sentence.writer}}</div>
             </div>

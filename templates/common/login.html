@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-3" style="20rem">
+    <div class="row justify-content-center align-items-center">
+        <div class="card align-middle" style="width:20rem; border-radius:20px;">
+            <div class="card-title" style="margin-top:30px;">    
+                <h2 class="card-title text-center">로그인</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" class="post-form" action="{% url 'common:login' %}">
+                    {% csrf_token %}
+                    <!-- 로그인 성공 후 이동되는 URL -->
+                    <input type="hidden" name="next" value="{{next}}">
+                    <div class="form-group">
+                        <label for="username">사용자ID</label>
+                        <input type="text" class="form-control" name="username" id="username" value="{{form.username.value|default_if_none:''}}"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="password">비밀번호</label>
+                        <input type="password" class="form-control" name="password" id="password" value="{{form.password.value|default_if_none:''}}">
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <button type="submit" class="btn btn-primary">로그인</button>
+                        </div>
+                        <div class="col-7 text-right align-self-baseline">
+                            <a href="{% url 'common:signup' %}">회원가입</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

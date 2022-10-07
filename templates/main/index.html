@@ -2,14 +2,33 @@
 
 {% block content %}
     <div class="container">
+        </br>
+        <div class="row justify-content-center">
+            <div class="btn-group">
+                <button onclick="startInterval();" type="button" class="auto_reload btn btn-secondary">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button onclick="stopInterval();" type="button" class="auto_reload_stop btn btn-secondary">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button onclick="pageReload()"  type="button" class="reload btn btn-secondary">
+                    <i class="fas fa-redo"></i>
+                </button>
+            </div>
+        </div>
         <div class="row justify-content-center align-items-center" style="min-height: 20vh">
-            <a href="#" onclick="addLike()" data-uri="{% url 'main:bookmark' sentence.id %}" class="heartBtn btn" id="heartBtn">
-                {% if heart%}
-                    <i class="fas fa-heart fa-2x" style="color:red;"></i>
-                {% else %}
-                    <i class="far fa-heart fa-2x" style="color:black;"></i>
-                {% endif %}
-            </a>
+            <form method="POST" class="post-form my-3">
+                {% csrf_token %}
+                {% include 'messages.html' %}
+                <input type="hidden" name="id_value" value="{{sentence.id}}"></input>
+                <button href="#" type="submit" data-uri="{% url 'main:index' %}" class="heartBtn btn" id="heartBtn" name="{{sentence.id}}">
+                    {% if heart%}
+                        <i class="fas fa-heart fa-2x" style="color:red;"></i>
+                    {% else %}
+                        <i class="far fa-heart fa-2x" style="color:black;"></i>
+                    {% endif %}
+                </button>
+            </form>
         </div>
         <!-- 문구를 세로로 중앙에 배치하는 div -->
         <div class="row justify-content-center align-items-center" style="min-height: 50vh">
@@ -27,18 +46,35 @@
 
 {% block script%}
 <script>
-    {% comment %} function addLike(){
-        const pushHeartBtn = document.querySelector(".heartBtn");
-                pushHeartBtn.innerHTML ='<i class="fas fa-heart fa-2x"></i>';
-                pushHeartBtn.style.color ='red';
-                location.href = window.location.href + pushHeartBtn.value();
-    } {% endcomment %}
-    
+    //하트 추가,삭제
     $(document).ready(function(){
         $(".heartBtn").on('click', function() {
             location.href = $(this).data('uri');
         });
     });
+
+    var handle = null;
+    window.onload = function(){
+        startInterval();
+    }
+    function startInterval(){
+        if(handle==null){
+            $(".auto_reload").css("color","black");
+            $(".auto_reload_stop").css("color","white");
+            handle=setInterval(function(){
+                location.href="{% url 'main:index' %}";
+            }, 7000);
+        }
+    }
+    function stopInterval(){
+        clearInterval(handle);
+        handle=null;
+        $(".auto_reload").css("color","white");
+        $(".auto_reload_stop").css("color","black");
+    }
+    function pageReload(){
+        location.href="{% url 'main:index' %}";
+    }
 </script>
 <style>
     .btn:focus, .btn:active:focus, .btn.active:focus{

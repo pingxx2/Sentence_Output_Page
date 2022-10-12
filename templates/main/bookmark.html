@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-3">
+    {% include 'messages.html' %}
+    <table class="table">
+        <thead>
+          <tr class="thead-dark">
+            <th>문구</th>
+            <th>제목</th>
+            <th>작가</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if bookmark_list %}
+            {% for bookmark in bookmark_list %}
+              <tr>
+                <td>
+                  {{bookmark.content}}
+                </td>
+                <td>{{bookmark.title}}</td>
+                <td>{{ bookmark.writer }}</td>
+              </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+</div>
+{% endblock%}

@@ -1,5 +1,5 @@
-<h3>STACK</h3>
-<div>
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white">
-</div>
+<h2>SENTENCE OUTPUT PAGE</h2>
+문구 출력 사이트입니다.
+
+1. 개발기간 : 22.10.06 ~
+

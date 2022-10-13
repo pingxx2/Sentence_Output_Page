@@ -2,28 +2,62 @@
 
 {% block content %}
 <div class="container my-3">
-    {% include 'messages.html' %}
-    <table class="table">
-        <thead>
-          <tr class="thead-dark">
-            <th>문구</th>
-            <th>제목</th>
-            <th>작가</th>
+  {% include 'messages.html' %}
+  <table class="table bookmark_table">
+    <thead>
+      <tr class="thead-dark">
+        <th>문구</th>
+        <th>제목</th>
+        <th>작가</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if bookmark_list %}
+        {% for bookmark in bookmark_list %}
+          <tr>
+            <td style="width:70%">{{bookmark.content}}</td>
+            <td>{{bookmark.title}}</td>
+            <td>{{ bookmark.writer }}</td>
           </tr>
-        </thead>
-        <tbody>
-          {% if bookmark_list %}
-            {% for bookmark in bookmark_list %}
-              <tr>
-                <td>
-                  {{bookmark.content}}
-                </td>
-                <td>{{bookmark.title}}</td>
-                <td>{{ bookmark.writer }}</td>
-              </tr>
-            {% endfor %}
-          {% endif %}
-        </tbody>
-      </table>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+  <!-- 페이징처리 시작 -->
+  <ul class="pagination justify-content-center">
+    <!-- 이전 페이지 -->
+    {% if bookmark_list.has_previoust %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{bookmark_list.previous_page_number}}">이전</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+    </li>
+    {% endif %}
+    <!-- 페이지 리스트 -->
+    {% for page_number in bookmark_list.paginator.page_range %}
+      {% if page_number == bookmark_list.number %}
+      <li class="page-item active" aria-content="page">
+        <a class="page-link" href="?page={{page_number}}">{{page_number}}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{page_number}}">{{page_number}}</a>
+      </li>
+      {% endif %}
+    {% endfor %}
+    <!-- 다음 페이지 -->
+    {% if bookmark_list.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{bookmark_list.next_page_number}}">다음</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+    </li>
+    {% endif %}
+  </ul>
+  <!-- 페이징처리 끝 -->
 </div>
 {% endblock%}

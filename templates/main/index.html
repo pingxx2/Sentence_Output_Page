@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
     <div class="container">
         </br>
@@ -76,10 +78,4 @@
         location.href="{% url 'main:index' %}";
     }
 </script>
-<style>
-    .btn:focus, .btn:active:focus, .btn.active:focus{
-        outline:none;
-        box-shadow:none;
-    }
-</style>
 {% endblock%}

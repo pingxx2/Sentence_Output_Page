@@ -4,6 +4,7 @@ import random
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 def index(request):
     """
@@ -42,10 +43,16 @@ def index(request):
 
 @login_required(login_url='common:login')
 def bookmark(request):
-    #sentence = Sentence.objects.all().first()
     user = User.objects.get(id=request.user.id)
     bookmark_list = user.bookmark_sentence.all()
-    context = {'bookmark_list':bookmark_list}
+    #입력 파라미터
+    page=request.GET.get('page','1')
+
+    #페이징 처리
+    paginator = Paginator(bookmark_list, 10)
+    page_obj = paginator.get_page(page)
+
+    context = {'bookmark_list':page_obj}
 
     return render(request, 'main/bookmark.html', context)
 

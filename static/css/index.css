@@ -3,3 +3,8 @@
     outline:none;
     box-shadow:none;
 }
+
+.text_deco_buttons{
+    background-color: #c9c9c7;
+    border: none;
+}

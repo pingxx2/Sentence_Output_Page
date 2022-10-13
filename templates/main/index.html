@@ -5,6 +5,7 @@
 {% block content %}
     <div class="container">
         </br>
+        <!-- 재생/일시정지/새로고침 버튼 -->
         <div class="row justify-content-center">
             <div class="btn-group">
                 <button onclick="startInterval();" type="button" class="auto_reload btn btn-secondary">
@@ -18,7 +19,13 @@
                 </button>
             </div>
         </div>
-        <div class="row justify-content-center align-items-center" style="min-height: 20vh">
+        <!-- 글자 꾸미기 버튼들 불러오기 -->
+        {% include 'text_deco.html' %}
+
+        <!-- 문구 카드 -->
+        <div class="row justify-content-center align-items-center" 
+        style="background-color:#f7f5ed; padding:3rem; border-radius:1rem; ">
+            <!-- 하트 -->
             <form method="POST" class="post-form my-3">
                 {% csrf_token %}
                 {% include 'messages.html' %}
@@ -31,15 +38,15 @@
                     {% endif %}
                 </button>
             </form>
-        </div>
-        <!-- 문구를 세로로 중앙에 배치하는 div -->
-        <div class="row justify-content-center align-items-center" style="min-height: 50vh">
-            <div class="container">
-                <h1 class="text-center">
+            <!-- 문구 -->
+            <div class="container" style="text-align:left;">
+                <h1 class="main_content" style="font-size:2.5rem;text-align:center;">
                     "{{sentence.content}}"
                 </h1>
             </div>
-            <div class="card" style="font-size:0.7em">
+            <div class="container">
+            </div>
+            <div class="card" style="font-size:0.9em; margin-top:4rem">
                 <div class="card-body text-center"><strong>{{sentence.title}}</strong>&nbsp;&nbsp;&nbsp;{{sentence.writer}}</div>
             </div>
         </div>

@@ -5,5 +5,5 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('', views.vote_bookmark, name="bookmark"),
+    #path('bookmark/', views.bookmark, name='bookmark'),
 ]

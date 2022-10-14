@@ -1,0 +1,10 @@
+/*index.html의 하트 버튼 테두리 제거*/
+.btn:focus, .btn:active:focus, .btn.active:focus{
+    outline:none;
+    box-shadow:none;
+}
+
+.text_deco_buttons{
+    background-color: #c9c9c7;
+    border: none;
+}

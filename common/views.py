@@ -21,7 +21,11 @@ def signup(request):
     else:
         form = UserForm()
     return render(request, 'common/signup.html', {'form': form})
+<<<<<<< HEAD
 
+=======
+"""
+>>>>>>> fb34df3c6a43ffedf2cbd4bb1681faed620fab51
 @login_required(login_url='common:login')
 def bookmark(request):
     sentence = get_object_or_404(User, id=request.user.id)
@@ -31,4 +35,9 @@ def bookmark(request):
 
     context = {'bookmark_list':bookmark_list}
 
+<<<<<<< HEAD
     return render(request, 'main/bookmark.html', context)
+=======
+    return render(request, 'main/bookmark.html', context)
+"""
+>>>>>>> fb34df3c6a43ffedf2cbd4bb1681faed620fab51

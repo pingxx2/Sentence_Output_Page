@@ -10,7 +10,11 @@
         <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
         <li class="nav-item">
+<<<<<<< HEAD
             <a class="nav-link" href="{% url 'common:bookmark' %}">
+=======
+            <a class="nav-link" href="{% url 'main:bookmark' %}">
+>>>>>>> fb34df3c6a43ffedf2cbd4bb1681faed620fab51
                 {{user.username}}의 즐겨찾기
             </a>
         </li>

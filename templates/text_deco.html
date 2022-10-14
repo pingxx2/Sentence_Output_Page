@@ -1,0 +1,120 @@
+<div class="row justify-content-center align-items-center" style="padding:1rem;">
+    <ul class="list-group list-group-horizontal">
+        <li class="text-size list-group-item">
+            <a type="text" style="font-weight:bolder">SIZE</br></a>
+            <button onclick="td_size_one();" type="button" class="size_one btn text_deco_buttons">
+                <a type="text" style="font-weight:bold">1</a>
+            </button>
+            <button onclick="td_size_two();" type="button" class="size_two  btn text_deco_buttons">
+                <a type="text" style="font-weight:bold">2</a>
+            </button>
+            <button onclick="td_size_three();" type="button" class="size_three  btn text_deco_buttons">
+                <a type="text" style="font-weight:bold">3</a>
+            </button>
+        </li>
+        <li class="text-deco list-group-item">
+            <a type="text" style="font-weight:bolder">DECO</br></a>
+            <button onclick="td_deco_bold();" type="button" class="bold btn text_deco_buttons">
+                <i class="fas fa-bold"></i>
+            </button>
+            <button type="button" class="italic btn text_deco_buttons">
+                <i class="fas fa-italic"></i>
+            </button>
+            <button type="button" class="underline btn text_deco_buttons">
+                <i class="fas fa-underline"></i>
+            </button>
+        </li>
+        <li class="text-align list-group-item">
+            <a type="text" style="font-weight:bolder">ALIGN</br></a>
+            <button onclick="td_align_left();" type="button" class="left btn text_deco_buttons">
+                <i class="fas fa-align-left"></i>
+            </button>
+            <button onclick="td_align_center();" type="button" class="center btn text_deco_buttons">
+                <i class="fas fa-align-center"></i>
+            </button>
+            <button onclick="td_align_right();" type="button" class="right btn text_deco_buttons">
+                <i class="fas fa-align-right"></i>
+            </button>
+        </li>
+        <li class="text-color list-group-item">
+            <a type="text" style="font-weight:bolder">COLOR</br></a>
+            <button onclick="td_color_black();" type="button" class="black btn text_deco_buttons">
+                <i class="fas fa-circle" style="color:black"></i>
+            </button>
+            <button onclick="td_color_gray();" type="button" class="gray btn text_deco_buttons">
+                <i class="fas fa-circle" style="color:#636362"></i>
+            </button>
+            <button onclick="td_color_brown();" type="button" class="brown btn text_deco_buttons">
+                <i class="fas fa-circle" style="color:#7a4620"></i>
+            </button>
+            <button onclick="td_color_beige();" type="button" class="beige btn text_deco_buttons">
+                <i class="fas fa-circle" style="color:#b8a598"></i>
+            </button>
+        </li>
+    </ul>
+</div>
+
+{% block script%}
+<script>
+    // 사이즈 1
+    function td_size_one(){
+        $(".main_content").css("font-size","1.5rem");
+
+    }
+    //사이즈 2
+    function td_size_two(){
+        $(".main_content").css("font-size","2.5rem");
+
+    }
+    //사이즈 3
+    function td_size_three(){
+        $(".main_content").css("font-size","3.5rem");
+
+    }
+
+    //굵게
+    var blod_check=0;
+    function td_deco_bold(){
+        if(blod_check==1){
+            $(".main_content").css("font-weight","normal");
+            blod_check=0;
+        }
+        else{
+            $(".main_content").css("font-weight","bold");
+            bold_check=1;
+        }
+    }
+
+    //왼쪽정렬
+    function td_align_left(){
+        $(".main_content").css("text-align","left");
+    }
+    //중앙정렬
+    function td_align_center(){
+        $(".main_content").css("text-align","center");
+    }
+    //오른쪽정렬
+    function td_align_right(){
+        $(".main_content").css("text-align","right");
+    }
+
+
+    //검은색
+    function td_color_black(){
+        $(".main_content").css("color","black");
+    }
+    //회색
+    function td_color_gray(){
+        $(".main_content").css("color","#636362");
+    }
+    //갈색
+    function td_color_brown(){
+        $(".main_content").css("color","#7a4620");
+    }
+    //베이지색
+    function td_color_beige(){
+        $(".main_content").css("color","#b8a598");
+    }
+
+</script>
+{% endblock%}

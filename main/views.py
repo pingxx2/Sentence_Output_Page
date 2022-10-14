@@ -4,10 +4,7 @@ import random
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-<<<<<<< HEAD
-=======
 from django.core.paginator import Paginator
->>>>>>> fb34df3c6a43ffedf2cbd4bb1681faed620fab51
 
 def index(request):
     """
@@ -46,7 +43,6 @@ def index(request):
 """
 @login_required(login_url='common:login')
 def bookmark(request):
-<<<<<<< HEAD
     sentence = get_object_or_404(Sentence, id=request.user.id)
     bookmark_list = sentence.bookmark.all()
     messages.success(request, bookmark_list)
@@ -55,9 +51,9 @@ def bookmark(request):
     context = {'bookmark_list':bookmark_list}
 
     return render(request, 'main/bookmark.html', context)
-
 """
-=======
+@login_required(login_url='common:login')
+def bookmark(request):
     user = User.objects.get(id=request.user.id)
     bookmark_list = user.bookmark_sentence.all()
     #입력 파라미터
@@ -72,4 +68,3 @@ def bookmark(request):
     return render(request, 'main/bookmark.html', context)
 
 
->>>>>>> fb34df3c6a43ffedf2cbd4bb1681faed620fab51

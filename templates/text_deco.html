@@ -14,13 +14,13 @@
         </li>
         <li class="text-deco list-group-item">
             <a type="text" style="font-weight:bolder">DECO</br></a>
-            <button onclick="td_deco_bold();" type="button" class="bold btn text_deco_buttons">
+            <button onclick="td_deco_bold();" value="none" type="button" class="bold btn text_deco_buttons">
                 <i class="fas fa-bold"></i>
             </button>
-            <button type="button" class="italic btn text_deco_buttons">
+            <button onclick="td_deco_italic();" value="none" type="button" class="italic btn text_deco_buttons">
                 <i class="fas fa-italic"></i>
             </button>
-            <button type="button" class="underline btn text_deco_buttons">
+            <button onclick="td_deco_underline();" value="none" type="button" class="underline btn text_deco_buttons">
                 <i class="fas fa-underline"></i>
             </button>
         </li>
@@ -72,16 +72,40 @@
 
     }
 
-    //굵게
-    var blod_check=0;
+    //굵기
     function td_deco_bold(){
-        if(blod_check==1){
+        var valueById = $('.bold').val();
+        if(valueById=="bold"){
             $(".main_content").css("font-weight","normal");
-            blod_check=0;
+            $('.bold').attr("value", "none");
         }
-        else{
+        else if(valueById=="none"){
             $(".main_content").css("font-weight","bold");
-            bold_check=1;
+            $('.bold').attr("value", "bold");
+        }
+    }
+    //기울임
+    function td_deco_italic(){
+        var valueById = $('.italic').val();
+        if(valueById=="italic"){
+            $(".main_content").css("font-style","normal");
+            $('.italic').attr("value", "none");
+        }
+        else if(valueById=="none"){
+            $(".main_content").css("font-style","italic");
+            $('.italic').attr("value", "italic");
+        }
+    }
+    //밑줄
+    function td_deco_underline(){
+        var valueById = $('.underline').val();
+        if(valueById=="underline"){
+            $(".main_content").css("text-decoration","none");
+            $('.underline').attr("value", "none");
+        }
+        else if(valueById=="none"){
+            $(".main_content").css("text-decoration","underline");
+            $('.underline').attr("value", "underline");
         }
     }
 

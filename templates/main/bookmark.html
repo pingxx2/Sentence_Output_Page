@@ -3,7 +3,15 @@
 {% block content %}
 <div class="container my-3">
   {% include 'messages.html' %}
-  <table class="table bookmark_table">
+  <!--
+  <div class="col-12">
+    <button onclick="delete_button_check();" class="edit_button btn btn-primary float-right"
+            style="margin-bottom:5px" value="check">편집</button>
+    <button onclick="delete_button_check();" class="delete_button btn btn-danger float-right"
+            style="margin-bottom:5px" value="not_checked">삭제</button>
+  </div>
+  -->
+  <table class="table table-hover bookmark_table" style="text-align:center;">
     <thead>
       <tr class="thead-dark">
         <th>문구</th>
@@ -15,7 +23,7 @@
       {% if bookmark_list %}
         {% for bookmark in bookmark_list %}
           <tr>
-            <td style="width:70%">{{bookmark.content}}</td>
+            <td data-uri="{% url 'main:bookmark_delete' bookmark.id%}" style="width:70%" class="table_row" name="{{bookmark.id}}">{{bookmark.content}}</td>
             <td>{{bookmark.title}}</td>
             <td>{{ bookmark.writer }}</td>
           </tr>
@@ -61,4 +69,52 @@
   <!-- 페이징처리 끝 -->
 
 </div>
+{% endblock%}
+
+{% block script%}
+<script>
+  $(document).ready(function(){
+    $(".table_row").on('click', function() {
+      if(confirm("삭제하시겠습니까?")==true){
+        location.href = $(this).data('uri');
+      }
+      else{
+        return false;
+      }
+    });
+  });
+  /*
+  
+  $(".delete_check").hide();
+  $(".delete_button").hide();
+  function delete_button_check(){
+    var edit_value = $('.edit_button').val();
+    var delete_value = $('.delete_button').val();
+    if(edit_value=="check" && delete_value=="not_checked"){
+      //편집, 삭제 버튼 토글
+      $(".edit_button").hide();
+      $(".delete_button").show();
+
+      //체크박스 보이게
+      $(".delete_check").show();
+
+      $('.edit_button').attr("value", "not_checked");
+      $('.delete_button').attr("value", "check");
+
+      if()
+    }
+    else if(edit_value=="not_checked" && delete_value=="check"){
+      //편집, 삭제 버튼 토글
+      $(".edit_button").show();
+      $(".delete_button").hide();
+
+      //체크박스 안보이게
+      $(".delete_check").hide();
+
+      $('.edit_button').attr("value", "check");
+      $('.delete_button').attr("value", "not_checked");
+    }
+  }
+  */ 
+</script>
 {% endblock%}

@@ -30,7 +30,7 @@ def index(request):
     else:
         s_get = Sentence.objects.all()
         size = s_get.count()
-        random_num = random.randrange(1,size)
+        random_num = random.randrange(1,size-1)
         sentence = get_object_or_404(Sentence, id=random_num)
         try:
             check = get_object_or_404(Sentence, bookmark=request.user, id=random_num)
@@ -54,6 +54,9 @@ def bookmark(request):
 """
 @login_required(login_url='common:login')
 def bookmark(request):
+    """
+    북마크 출력
+    """
     user = User.objects.get(id=request.user.id)
     bookmark_list = user.bookmark_sentence.all()
     #입력 파라미터
@@ -68,3 +71,12 @@ def bookmark(request):
     return render(request, 'main/bookmark.html', context)
 
 
+@login_required(login_url='common:login')
+def bookmark_delete(request, bookmark_id):
+    """
+    북마크 삭제
+    """
+    user = User.objects.get(id=request.user.id)
+    bookmark_list = user.bookmark_sentence.filter(id=bookmark_id)
+    bookmark_list.delete()
+    return redirect('main:bookmark')

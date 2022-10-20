@@ -76,7 +76,12 @@ def bookmark_delete(request, bookmark_id):
     """
     북마크 삭제
     """
-    user = User.objects.get(id=request.user.id)
-    bookmark_list = user.bookmark_sentence.filter(id=bookmark_id)
-    bookmark_list.delete()
+    'bookmark_sentence가 아니라 sentence가 삭제되는 문제 해결해야함..'
+    sentence = get_object_or_404(Sentence, id=bookmark_id)
+    try:
+        check = get_object_or_404(Sentence, bookmark=request.user, id=bookmark_id)
+        sentence.bookmark.remove(request.user)
+    except TypeError:
+        # 로그인없이 하트 눌렀을 때 , 로그인 창으로 이동
+        return redirect('common:login')
     return redirect('main:bookmark')
